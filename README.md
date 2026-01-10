@@ -12,6 +12,7 @@ A compact and efficient Verilog project implementing **3x3 matrix multiplication
 - [Testbench & Example Usage](#testbench--example-usage)
 - [File Structure](#file-structure)
 - [How to Run](#how-to-run)
+- [References](#references)
 - [License](#license)
 - [Contact](#contact)
 
@@ -118,6 +119,16 @@ Final Matrix C (A*B):
    ```sh
    gtkwave matrix.vcd
    ```
+
+---
+
+## References
+
+- [`matrix.v`](matrix.v) — Main Verilog source for 3x3 matrix multiplication
+- [`tbb.v`](tbb.v) — Testbench module
+- [NPTEL: Digital Design (EE180)](https://onlinecourses.nptel.ac.in/noc25_ee180/preview) — Foundational course on digital design
+- [Matrix Multiplication - Wikipedia](https://en.wikipedia.org/wiki/Matrix_multiplication) — Mathematical background
+- [Efficient Hardware Implementation of Matrix Multiplication](https://ieeexplore.ieee.org/document/8301237) — Research paper, IEEE Xplore
 
 ---
 
