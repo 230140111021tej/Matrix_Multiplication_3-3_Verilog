@@ -42,18 +42,21 @@ Calculation follows the standard row-column product logic for matrices.
 
 ## Architecture
 
-### Module: `matrix1`
+**Module: `matrix1`**
 
-- **Inputs**:
+- Inputs:
   - `a1 .. a9`: Elements of matrix A (row-major order)
   - `b1 .. b9`: Elements of matrix B (row-major order)
-- **Outputs**:
-  - `c1 .. c9`: Elements of output matrix C (row-major order)
+- Outputs:
+  - `c1 .. c9`: Elements of output matrix (also row-major)
 
-**Matrix Multiplication Rule**  
-Each output is computed as:  
+**Matrix Multiplication Rule:**  
+Each output element is computed as:
+
 ```
-c(i,j) = a(i,1)*b(1,j) + a(i,2)*b(2,j) + a(i,3)*b(3,j)
+c(i,j) = a(row i, col 1) * b(1, col j) +
+         a(row i, col 2) * b(2, col j) +
+         a(row i, col 3) * b(3, col j)
 ```
 **Example:**  
 `c1 = (a1 * b1) + (a4 * b2) + (a7 * b3)`
