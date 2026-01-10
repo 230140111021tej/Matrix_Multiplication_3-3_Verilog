@@ -1,6 +1,6 @@
 # 🧮 3x3 Matrix Multiplication in Verilog HDL
 
-A compact and efficient Verilog project implementing **3x3 matrix multiplication**. This design takes two 3x3 matrices (with 8-bit unsigned entries) and computes their product, outputting a new 3x3 matrix with 19-bit entries to never overflow for any multiplication of two 8-bit numbers.
+A compact and efficient Verilog project implementing **3x3 matrix multiplication**. This design takes two 3x3 matrices (with 8-bit unsigned entries) and computes their product, outputting a new 3x3 matrix with 19-bit entries to prevent overflow. Designed for demonstration, education, and as a reusable hardware block.
 
 ---
 
@@ -19,62 +19,52 @@ A compact and efficient Verilog project implementing **3x3 matrix multiplication
 
 ## About
 
-This project demonstrates **matrix multiplication using Verilog HDL**, employing pure combinational logic. The modules are suitable for digital design demonstration, algorithm realization, education, or preliminary acceleration of signal/image processing tasks on hardware.
+This project demonstrates **matrix multiplication using Verilog HDL**, employing pure combinational logic. It’s suitable for digital/FPGA design, hardware acceleration, or education in digital signal and image processing.
 
-- **Inputs:**  
+- **Inputs**:  
   - Matrix A: 3×3, each element 8 bits  
   - Matrix B: 3×3, each element 8 bits
-- **Output:**  
-  - Matrix C = A × B: 3×3, each element 19 bits
+- **Output**:  
+  - Matrix C = A × B: 3×3, each element 19 bits (prevents overflow in all input cases)
 
-Calculation follows the standard row-column product rule for matrices.
+Calculation follows the standard row-column product logic for matrices.
 
 ---
 
 ## Features
 
-- **Direct Combinational Logic:** Output reflects inputs instantly, ideal for fast hardware operations or as a sub-block in pipelined designs.
-- **Handles Full 8-Bit Range:** Internal width ensures correctness for all possible products and sums.
-- **Easy Integration:** Just instantiate with two sets of 9 eight-bit values!
-- **Comprehensive Testbench:** Helps verify correctness and view input/output matrices in simulation.
+- **Pure Combinational Logic**: Output updates instantly based on inputs—ideal for high-speed hardware or as an accelerator sub-block.
+- **Handles All 8-Bit Ranges**: No overflow due to widened output bitwidth.
+- **Easy Instantiation**: Just wire up two sets of 9 input elements!
+- **Comprehensive Testbench**: Prints matrices before and after multiplication for easy verification and simulation.
 
 ---
 
 ## Architecture
 
-**Module: `matrix1`**
+### Module: `matrix1`
 
-- Inputs:
+- **Inputs**:
   - `a1 .. a9`: Elements of matrix A (row-major order)
   - `b1 .. b9`: Elements of matrix B (row-major order)
-- Outputs:
-  - `c1 .. c9`: Elements of output matrix (also row-major)
+- **Outputs**:
+  - `c1 .. c9`: Elements of output matrix C (row-major order)
 
-**Matrix Multiplication Rule:**  
-Each output element is computed as:
-
+**Matrix Multiplication Rule**  
+Each output is computed as:  
 ```
-c(i,j) = a(row i, col 1) * b(1, col j) +
-         a(row i, col 2) * b(2, col j) +
-         a(row i, col 3) * b(3, col j)
+c(i,j) = a(i,1)*b(1,j) + a(i,2)*b(2,j) + a(i,3)*b(3,j)
 ```
-
-**Example for c1:**
-```
-c1 = (a1 * b1) + (a4 * b2) + (a7 * b3)
-```
-And so on for the other elements.
+**Example:**  
+`c1 = (a1 * b1) + (a4 * b2) + (a7 * b3)`
 
 ---
 
 ## Testbench & Example Usage
 
-**Testbench:**  
-- Initializes matrices A and B with hexadecimal values
-- Prints each input matrix for easy verification
-- Prints computed output matrix C
+- The testbench (`tbb.v`) initializes matrices A and B with sample hexadecimal values, prints their contents, and then prints the resulting matrix C.
+- Output example (will depend on the initialized values):
 
-**Example Output:**
 ```
 Matrix A:
 FF	10	B5
@@ -91,7 +81,8 @@ Final Matrix C (A*B):
 00000847	00000e89	0000b247
 0000014c	0000024a	00000a92
 ```
-(Values will vary based on test input!)
+
+*(Matrix values are shown as hexadecimal and may differ depending on your testbench values.)*
 
 ---
 
@@ -99,30 +90,28 @@ Final Matrix C (A*B):
 
 ```
 .
-├── matrix.v   // Matrix multiplication implementation (module `matrix1`)
-├── tbb.v      // Testbench (applies values, prints matrices)
-├── README.md  // Project documentation
+├── matrix.v      // Matrix multiplier module (matrix1)
+├── tbb.v         // Testbench (applies values, prints matrices)
+├── README.md     // Project documentation
 ```
 
 ---
 
 ## How to Run
 
-1. **Simulation**
+> **Requirements:** [Icarus Verilog](https://iverilog.fandom.com/wiki/Installation_Guide) (`iverilog`), and optionally GTKWave for waveform viewing.
 
-   Use Icarus Verilog or any standard simulator:
+1. **Simulate**
 
    ```sh
    iverilog -o tbb tbb.v matrix.v
    vvp tbb
    ```
+   Output will appear in your terminal.
 
-   Output will be displayed directly in your terminal.
+2. **(Optional) Waveform View**
 
-2. **(Optional) View Waveforms**
-
-   Add or modify dumping statements if you wish to use GTKWave:
-
+   Add VCD dump statements to your testbench (if not present), then:
    ```sh
    gtkwave matrix.vcd
    ```
