@@ -28,7 +28,7 @@ This project demonstrates **matrix multiplication using Verilog HDL**, employing
 - **Output**:  
   - Matrix C = A × B: 3×3, each element 19 bits (prevents overflow in all input cases)
 
-“Calculation follows standard row–column matrix multiplication, with inputs provided in column-major order.”
+“Calculation follows standard row–column matrix multiplication. Internally, matrix inputs are provided in column-major order, while outputs are produced in row-major order.”
 
 ---
 
@@ -41,18 +41,20 @@ This project demonstrates **matrix multiplication using Verilog HDL**, employing
 
 ---
 
+
 ## Architecture
 
 **Module: `matrix1`**
 
-Inputs:
-- a1 .. a9: Elements of matrix A (column-major order)
-- b1 .. b9: Elements of matrix B (column-major order)
-  
-- Outputs:
--c1 .. c9: Elements of output matrix in row-major order
--(c1–c3 first row, c4–c6 second row, c7–c9 third row)
+```
+**Inputs:**
+- `a1 .. a9`: Elements of matrix A (**column-major order**)
+- `b1 .. b9`: Elements of matrix B (**column-major order**)
 
+**Outputs:**
+- `c1 .. c9`: Elements of output matrix in **row-major order**  
+  (`c1–c3` first row, `c4–c6` second row, `c7–c9` third row)
+```
 **Matrix Multiplication Rule:**  
 Each output element is computed as:
 
