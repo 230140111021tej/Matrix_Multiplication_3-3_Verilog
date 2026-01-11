@@ -50,7 +50,8 @@ Inputs:
 - b1 .. b9: Elements of matrix B (column-major order)
   
 - Outputs:
-  - `c1 .. c9`: Elements of output matrix (also row-major)
+-c1 .. c9: Elements of output matrix in row-major order
+-(c1–c3 first row, c4–c6 second row, c7–c9 third row)
 
 **Matrix Multiplication Rule:**  
 Each output element is computed as:
