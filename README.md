@@ -1,6 +1,7 @@
 # 🧮 3x3 Matrix Multiplication in Verilog HDL
 
-A compact and efficient Verilog project implementing **3x3 matrix multiplication**. This design takes two 3x3 matrices (with 8-bit unsigned entries) and computes their product, outputting a new 3x3 matrix with 19-bit entries to prevent overflow. Designed for demonstration, education, and as a reusable hardware block.
+A compact and efficient Verilog project implementing **3x3 matrix multiplication**. This design takes two 3x3 matrices (with 8-bit unsigned entries) and computes their product, outputting a new 3x3 matrix with 19-bit entries to prevent overflow. This project was created as part of hands-on practice while learning Verilog HDL and digital design concepts.
+
 
 ---
 
